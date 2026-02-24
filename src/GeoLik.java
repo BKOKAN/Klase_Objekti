@@ -14,6 +14,11 @@ public abstract class GeoLik {
         this.naziv = naziv;
     }
 
+    @Override
+    public String toString() {
+        return naziv;
+    }
+
     public abstract double opseg();
     public abstract double povrsina();
 }
