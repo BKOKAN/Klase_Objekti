@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/Klase_Objekti.iml" filepath="$PROJECT_DIR$/Klase_Objekti.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/Set_Get.iml" filepath="$PROJECT_DIR$/Set_Get.iml" />
+>>>>>>> 05d2893f4f1a94f689eaa56d144a3f55296f9485
     </modules>
   </component>
 </project>
