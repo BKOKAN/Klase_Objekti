@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d6dbe7b2-56df-4d79-b77f-7d65e23541e7" name="Changes" comment="update toString override">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Klase_Objekti/GeoLik.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Klase_Objekti/GeoLik.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Klase_Objekti/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Klase_Objekti/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Interface" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -78,21 +66,10 @@
       <option name="project" value="LOCAL" />
       <updated>1771959191675</updated>
     </task>
-    <task id="LOCAL-00002" summary="update toString override">
-      <option name="closed" value="true" />
-      <created>1771959870897</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1771959870897</updated>
-    </task>
-    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Resolve merge conflicts and ignore IntelliJ files" />
     <MESSAGE value="mozda popravak" />
-    <MESSAGE value="update toString override" />
-    <option name="LAST_COMMIT_MESSAGE" value="update toString override" />
   </component>
 </project>
