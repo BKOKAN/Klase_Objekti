@@ -4,16 +4,13 @@ import java.util.Scanner;
 
 public class Main {
 
-
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-
         String switchCase = "Izbornik";
 
         ArrayList<GeoLik> likovi = new ArrayList<>();
 
-        // vec generirani likovi
         Krug k1 = new Krug("K1", 6);
         Krug k2 = new Krug("K2", 5);
         Trokut t1 = new Trokut("T1", 5, 6, 5);
@@ -22,6 +19,10 @@ public class Main {
         Pravokutnik p2 = new Pravokutnik("P2", 4, 6);
 
         likovi.addAll(Arrays.asList(k1, k2, t1, t2, p1, p2));
+
+        Krug zadnjiKrug = null;
+        Pravokutnik zadnjiPravokutnik = null;
+        Trokut zadnjiTrokut = null;
 
         boolean isKrug = false;
         boolean isPravokutnik = false;
@@ -39,21 +40,9 @@ public class Main {
                     int izbor = scanner.nextInt();
                     scanner.nextLine();
 
-                    if (izbor == 1)
-                    {
-                        isKrug = true;
-                        switchCase = "krug";
-                    }
-                    else if (izbor == 2)
-                    {
-                        isPravokutnik = true;
-                        switchCase = "pravokutnik";
-                    }
-                    else if (izbor == 3)
-                    {
-                        isTrokut = true;
-                        switchCase = "trokut";
-                    }
+                    if (izbor == 1) switchCase = "krug";
+                    else if (izbor == 2) switchCase = "pravokutnik";
+                    else if (izbor == 3) switchCase = "trokut";
                     else System.out.println("Neispravan unos!");
                     break;
 
@@ -65,28 +54,15 @@ public class Main {
                     double radius = scanner.nextDouble();
                     scanner.nextLine();
 
-                    Krug krug = new Krug(nazivK, radius);
-                    likovi.add(krug);
+                    zadnjiKrug = new Krug(nazivK, radius);
+                    likovi.add(zadnjiKrug);
 
-                    if (likovi.size() > 1) {
-                        System.out.println("Želiš li ispisati podatke i poredati ih po površini? (da/ne)");
-                    } else {
-                        System.out.println("Želiš li ispisati podatke? (da/ne)");
-                    }
+                    isKrug = true;
+                    isPravokutnik = false;
+                    isTrokut = false;
 
-                    String odgK = scanner.nextLine();
-
-                    if (odgK.equalsIgnoreCase("da")) {
-                        switchCase = "podatci";
-                    } else {
-                        System.out.println("Želiš li unijeti novi lik? (da/ne)");
-                        odgK = scanner.nextLine();
-                        if (odgK.equalsIgnoreCase("da")) switchCase = "izbornik";
-                        else {
-                            scanner.close();
-                            return;
-                        }
-                    }
+                    pitajZaIspis(scanner, likovi);
+                    switchCase = "podatci";
                     break;
 
                 case "pravokutnik":
@@ -94,34 +70,21 @@ public class Main {
                     String nazivP = scanner.nextLine();
 
                     System.out.println("Unesi stranicu A:");
-                    double a = scanner.nextDouble();
+                    double ac = scanner.nextDouble();
 
                     System.out.println("Unesi stranicu B:");
-                    double b = scanner.nextDouble();
+                    double bd = scanner.nextDouble();
                     scanner.nextLine();
 
-                    Pravokutnik pravokutnik = new Pravokutnik(nazivP, a, b);
-                    likovi.add(pravokutnik);
+                    zadnjiPravokutnik = new Pravokutnik(nazivP, ac, bd);
+                    likovi.add(zadnjiPravokutnik);
 
-                    if (likovi.size() > 1) {
-                        System.out.println("Želiš li ispisati podatke i poredati ih po površini? (da/ne)");
-                    } else {
-                        System.out.println("Želiš li ispisati podatke? (da/ne)");
-                    }
+                    isKrug = false;
+                    isPravokutnik = true;
+                    isTrokut = false;
 
-                    String odgP = scanner.nextLine();
-
-                    if (odgP.equalsIgnoreCase("da")) {
-                        switchCase = "podatci";
-                    } else {
-                        System.out.println("Želiš li unijeti novi lik? (da/ne)");
-                        odgP = scanner.nextLine();
-                        if (odgP.equalsIgnoreCase("da")) switchCase = "izbornik";
-                        else {
-                            scanner.close();
-                            return;
-                        }
-                    }
+                    pitajZaIspis(scanner, likovi);
+                    switchCase = "podatci";
                     break;
 
                 case "trokut":
@@ -138,36 +101,45 @@ public class Main {
                     double tc = scanner.nextDouble();
                     scanner.nextLine();
 
-                    Trokut trokut = new Trokut(nazivT, ta, tb, tc);
-                    likovi.add(trokut);
+                    zadnjiTrokut = new Trokut(nazivT, ta, tb, tc);
+                    likovi.add(zadnjiTrokut);
 
-                    if (likovi.size() > 1) {
-                        System.out.println("Želiš li ispisati podatke i poredati ih po površini? (da/ne)");
-                    } else {
-                        System.out.println("Želiš li ispisati podatke? (da/ne)");
-                    }
+                    isKrug = false;
+                    isPravokutnik = false;
+                    isTrokut = true;
 
-                    String odgT = scanner.nextLine();
-
-                    if (odgT.equalsIgnoreCase("da")) {
-                        switchCase = "podatci";
-                    } else {
-                        System.out.println("Želiš li unijeti novi lik? (da/ne)");
-                        odgT = scanner.nextLine();
-                        if (odgT.equalsIgnoreCase("da")) switchCase = "izbornik";
-                        else {
-                            scanner.close();
-                            return;
-                        }
-                    }
+                    pitajZaIspis(scanner, likovi);
+                    switchCase = "podatci";
                     break;
 
                 case "podatci":
-                    System.out.println("\nPodatci zadnjeg lika:");
-                    if(isKrug){
-                        System.out.println("Naziv: " + krug.getNaziv());
-                        System.out.println("Radius: " + krug.getradius());
+                    System.out.println("\n--- Podatci zadnjeg lika ---");
 
+                    if (isKrug && zadnjiKrug != null) {
+                        System.out.println("Lik: KRUG");
+                        System.out.println("Naziv: " + zadnjiKrug.getNaziv());
+                        System.out.println("Radius: " + zadnjiKrug.getRadius());
+                        System.out.println("Opseg: " + zadnjiKrug.opseg());
+                        System.out.println("Površina: " + zadnjiKrug.povrsina());
+                    }
+
+                    if (isPravokutnik && zadnjiPravokutnik != null) {
+                        System.out.println("Lik: PRAVOKUTNIK");
+                        System.out.println("Naziv: " + zadnjiPravokutnik.getNaziv());
+                        System.out.println("a: " + zadnjiPravokutnik.getVelicinaAC());
+                        System.out.println("b: " + zadnjiPravokutnik.getVelicinaBD());
+                        System.out.println("Opseg: " + zadnjiPravokutnik.opseg());
+                        System.out.println("Površina: " + zadnjiPravokutnik.povrsina());
+                    }
+
+                    if (isTrokut && zadnjiTrokut != null) {
+                        System.out.println("Lik: TROKUT");
+                        System.out.println("Naziv: " + zadnjiTrokut.getNaziv());
+                        System.out.println("a: " + zadnjiTrokut.getPrvaStranica());
+                        System.out.println("b: " + zadnjiTrokut.getDrugaStranica());
+                        System.out.println("c: " + zadnjiTrokut.getTrecaStranica());
+                        System.out.println("Opseg: " + zadnjiTrokut.opseg());
+                        System.out.println("Površina: " + zadnjiTrokut.povrsina());
                     }
 
                     if (likovi.size() > 1) {
@@ -191,5 +163,14 @@ public class Main {
                     break;
             }
         }
+    }
+
+     private static void pitajZaIspis(Scanner scanner, ArrayList<GeoLik> likovi) {
+        if (likovi.size() > 1) {
+            System.out.println("Želiš li ispisati podatke i poredati ih po površini? (da/ne)");
+        } else {
+            System.out.println("Želiš li ispisati podatke? (da/ne)");
+        }
+        scanner.nextLine();
     }
 }

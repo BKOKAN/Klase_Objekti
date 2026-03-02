@@ -1,0 +1,327 @@
+Index: src/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.util.ArrayList;\r\nimport java.util.Arrays;\r\nimport java.util.Scanner;\r\n\r\npublic class Main {\r\n\r\n\r\n    public static void main(String[] args) {\r\n\r\n        Scanner scanner = new Scanner(System.in);\r\n\r\n        String switchCase = \"Izbornik\";\r\n\r\n        ArrayList<GeoLik> likovi = new ArrayList<>();\r\n\r\n        // vec generirani likovi\r\n        Krug k1 = new Krug(\"K1\", 6);\r\n        Krug k2 = new Krug(\"K2\", 5);\r\n        Trokut t1 = new Trokut(\"T1\", 5, 6, 5);\r\n        Trokut t2 = new Trokut(\"T2\", 3, 6, 4);\r\n        Pravokutnik p1 = new Pravokutnik(\"P1\", 5, 3);\r\n        Pravokutnik p2 = new Pravokutnik(\"P2\", 4, 6);\r\n\r\n        likovi.addAll(Arrays.asList(k1, k2, t1, t2, p1, p2));\r\n\r\n        boolean isKrug = false;\r\n        boolean isPravokutnik = false;\r\n        boolean isTrokut = false;\r\n\r\n        while (true) {\r\n            switch (switchCase.toLowerCase()) {\r\n\r\n                case \"izbornik\":\r\n                    System.out.println(\"Odaberi oblik:\");\r\n                    System.out.println(\"1 - Krug\");\r\n                    System.out.println(\"2 - Pravokutnik\");\r\n                    System.out.println(\"3 - Trokut\");\r\n\r\n                    int izbor = scanner.nextInt();\r\n                    scanner.nextLine();\r\n\r\n                    if (izbor == 1)\r\n                    {\r\n                        isKrug = true;\r\n                        switchCase = \"krug\";\r\n                    }\r\n                    else if (izbor == 2)\r\n                    {\r\n                        isPravokutnik = true;\r\n                        switchCase = \"pravokutnik\";\r\n                    }\r\n                    else if (izbor == 3)\r\n                    {\r\n                        isTrokut = true;\r\n                        switchCase = \"trokut\";\r\n                    }\r\n                    else System.out.println(\"Neispravan unos!\");\r\n                    break;\r\n\r\n                case \"krug\":\r\n                    System.out.println(\"Unesi naziv kruga:\");\r\n                    String nazivK = scanner.nextLine();\r\n\r\n                    System.out.println(\"Unesi radius:\");\r\n                    double radius = scanner.nextDouble();\r\n                    scanner.nextLine();\r\n\r\n                    Krug krug = new Krug(nazivK, radius);\r\n                    likovi.add(krug);\r\n\r\n                    if (likovi.size() > 1) {\r\n                        System.out.println(\"Želiš li ispisati podatke i poredati ih po površini? (da/ne)\");\r\n                    } else {\r\n                        System.out.println(\"Želiš li ispisati podatke? (da/ne)\");\r\n                    }\r\n\r\n                    String odgK = scanner.nextLine();\r\n\r\n                    if (odgK.equalsIgnoreCase(\"da\")) {\r\n                        switchCase = \"podatci\";\r\n                    } else {\r\n                        System.out.println(\"Želiš li unijeti novi lik? (da/ne)\");\r\n                        odgK = scanner.nextLine();\r\n                        if (odgK.equalsIgnoreCase(\"da\")) switchCase = \"izbornik\";\r\n                        else {\r\n                            scanner.close();\r\n                            return;\r\n                        }\r\n                    }\r\n                    break;\r\n\r\n                case \"pravokutnik\":\r\n                    System.out.println(\"Unesi naziv pravokutnika:\");\r\n                    String nazivP = scanner.nextLine();\r\n\r\n                    System.out.println(\"Unesi stranicu A:\");\r\n                    double a = scanner.nextDouble();\r\n\r\n                    System.out.println(\"Unesi stranicu B:\");\r\n                    double b = scanner.nextDouble();\r\n                    scanner.nextLine();\r\n\r\n                    Pravokutnik pravokutnik = new Pravokutnik(nazivP, a, b);\r\n                    likovi.add(pravokutnik);\r\n\r\n                    if (likovi.size() > 1) {\r\n                        System.out.println(\"Želiš li ispisati podatke i poredati ih po površini? (da/ne)\");\r\n                    } else {\r\n                        System.out.println(\"Želiš li ispisati podatke? (da/ne)\");\r\n                    }\r\n\r\n                    String odgP = scanner.nextLine();\r\n\r\n                    if (odgP.equalsIgnoreCase(\"da\")) {\r\n                        switchCase = \"podatci\";\r\n                    } else {\r\n                        System.out.println(\"Želiš li unijeti novi lik? (da/ne)\");\r\n                        odgP = scanner.nextLine();\r\n                        if (odgP.equalsIgnoreCase(\"da\")) switchCase = \"izbornik\";\r\n                        else {\r\n                            scanner.close();\r\n                            return;\r\n                        }\r\n                    }\r\n                    break;\r\n\r\n                case \"trokut\":\r\n                    System.out.println(\"Unesi naziv trokuta:\");\r\n                    String nazivT = scanner.nextLine();\r\n\r\n                    System.out.println(\"Unesi stranicu a:\");\r\n                    double ta = scanner.nextDouble();\r\n\r\n                    System.out.println(\"Unesi stranicu b:\");\r\n                    double tb = scanner.nextDouble();\r\n\r\n                    System.out.println(\"Unesi stranicu c:\");\r\n                    double tc = scanner.nextDouble();\r\n                    scanner.nextLine();\r\n\r\n                    Trokut trokut = new Trokut(nazivT, ta, tb, tc);\r\n                    likovi.add(trokut);\r\n\r\n                    if (likovi.size() > 1) {\r\n                        System.out.println(\"Želiš li ispisati podatke i poredati ih po površini? (da/ne)\");\r\n                    } else {\r\n                        System.out.println(\"Želiš li ispisati podatke? (da/ne)\");\r\n                    }\r\n\r\n                    String odgT = scanner.nextLine();\r\n\r\n                    if (odgT.equalsIgnoreCase(\"da\")) {\r\n                        switchCase = \"podatci\";\r\n                    } else {\r\n                        System.out.println(\"Želiš li unijeti novi lik? (da/ne)\");\r\n                        odgT = scanner.nextLine();\r\n                        if (odgT.equalsIgnoreCase(\"da\")) switchCase = \"izbornik\";\r\n                        else {\r\n                            scanner.close();\r\n                            return;\r\n                        }\r\n                    }\r\n                    break;\r\n\r\n                case \"podatci\":\r\n                    System.out.println(\"\\nPodatci zadnjeg lika:\");\r\n                    if(isKrug){\r\n                        System.out.println(\"Naziv: \" + krug.getNaziv());\r\n                        System.out.println(\"Radius: \" + krug.getradius());\r\n\r\n                    }\r\n\r\n                    if (likovi.size() > 1) {\r\n                        likovi.sort((l1, l2) -> Double.compare(l1.povrsina(), l2.povrsina()));\r\n\r\n                        System.out.println(\"\\nPoredak po površini:\");\r\n                        for (GeoLik lik : likovi) {\r\n                            System.out.println(lik.getNaziv() + \" - \" + lik.povrsina());\r\n                        }\r\n                    }\r\n\r\n                    System.out.println(\"\\nŽeliš li unijeti novi lik? (da/ne)\");\r\n                    String odg = scanner.nextLine();\r\n\r\n                    if (odg.equalsIgnoreCase(\"da\")) {\r\n                        switchCase = \"izbornik\";\r\n                    } else {\r\n                        scanner.close();\r\n                        return;\r\n                    }\r\n                    break;\r\n            }\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Main.java b/src/Main.java
+--- a/src/Main.java	(revision 6dbec7faf0afc78f2bde5feab917b7f17b1afa33)
++++ b/src/Main.java	(date 1772469741343)
+@@ -4,16 +4,13 @@
+ 
+ public class Main {
+ 
+-
+     public static void main(String[] args) {
+ 
+         Scanner scanner = new Scanner(System.in);
+-
+         String switchCase = "Izbornik";
+ 
+         ArrayList<GeoLik> likovi = new ArrayList<>();
+ 
+-        // vec generirani likovi
+         Krug k1 = new Krug("K1", 6);
+         Krug k2 = new Krug("K2", 5);
+         Trokut t1 = new Trokut("T1", 5, 6, 5);
+@@ -23,6 +20,10 @@
+ 
+         likovi.addAll(Arrays.asList(k1, k2, t1, t2, p1, p2));
+ 
++        Krug zadnjiKrug = null;
++        Pravokutnik zadnjiPravokutnik = null;
++        Trokut zadnjiTrokut = null;
++
+         boolean isKrug = false;
+         boolean isPravokutnik = false;
+         boolean isTrokut = false;
+@@ -39,21 +40,9 @@
+                     int izbor = scanner.nextInt();
+                     scanner.nextLine();
+ 
+-                    if (izbor == 1)
+-                    {
+-                        isKrug = true;
+-                        switchCase = "krug";
+-                    }
+-                    else if (izbor == 2)
+-                    {
+-                        isPravokutnik = true;
+-                        switchCase = "pravokutnik";
+-                    }
+-                    else if (izbor == 3)
+-                    {
+-                        isTrokut = true;
+-                        switchCase = "trokut";
+-                    }
++                    if (izbor == 1) switchCase = "krug";
++                    else if (izbor == 2) switchCase = "pravokutnik";
++                    else if (izbor == 3) switchCase = "trokut";
+                     else System.out.println("Neispravan unos!");
+                     break;
+ 
+@@ -65,28 +54,15 @@
+                     double radius = scanner.nextDouble();
+                     scanner.nextLine();
+ 
+-                    Krug krug = new Krug(nazivK, radius);
+-                    likovi.add(krug);
++                    zadnjiKrug = new Krug(nazivK, radius);
++                    likovi.add(zadnjiKrug);
+ 
+-                    if (likovi.size() > 1) {
+-                        System.out.println("Želiš li ispisati podatke i poredati ih po površini? (da/ne)");
+-                    } else {
+-                        System.out.println("Želiš li ispisati podatke? (da/ne)");
+-                    }
++                    isKrug = true;
++                    isPravokutnik = false;
++                    isTrokut = false;
+ 
+-                    String odgK = scanner.nextLine();
+-
+-                    if (odgK.equalsIgnoreCase("da")) {
+-                        switchCase = "podatci";
+-                    } else {
+-                        System.out.println("Želiš li unijeti novi lik? (da/ne)");
+-                        odgK = scanner.nextLine();
+-                        if (odgK.equalsIgnoreCase("da")) switchCase = "izbornik";
+-                        else {
+-                            scanner.close();
+-                            return;
+-                        }
+-                    }
++                    pitajZaIspis(scanner, likovi);
++                    switchCase = "podatci";
+                     break;
+ 
+                 case "pravokutnik":
+@@ -94,34 +70,21 @@
+                     String nazivP = scanner.nextLine();
+ 
+                     System.out.println("Unesi stranicu A:");
+-                    double a = scanner.nextDouble();
++                    double ac = scanner.nextDouble();
+ 
+                     System.out.println("Unesi stranicu B:");
+-                    double b = scanner.nextDouble();
++                    double bd = scanner.nextDouble();
+                     scanner.nextLine();
+ 
+-                    Pravokutnik pravokutnik = new Pravokutnik(nazivP, a, b);
+-                    likovi.add(pravokutnik);
++                    zadnjiPravokutnik = new Pravokutnik(nazivP, ac, bd);
++                    likovi.add(zadnjiPravokutnik);
+ 
+-                    if (likovi.size() > 1) {
+-                        System.out.println("Želiš li ispisati podatke i poredati ih po površini? (da/ne)");
+-                    } else {
+-                        System.out.println("Želiš li ispisati podatke? (da/ne)");
+-                    }
++                    isKrug = false;
++                    isPravokutnik = true;
++                    isTrokut = false;
+ 
+-                    String odgP = scanner.nextLine();
+-
+-                    if (odgP.equalsIgnoreCase("da")) {
+-                        switchCase = "podatci";
+-                    } else {
+-                        System.out.println("Želiš li unijeti novi lik? (da/ne)");
+-                        odgP = scanner.nextLine();
+-                        if (odgP.equalsIgnoreCase("da")) switchCase = "izbornik";
+-                        else {
+-                            scanner.close();
+-                            return;
+-                        }
+-                    }
++                    pitajZaIspis(scanner, likovi);
++                    switchCase = "podatci";
+                     break;
+ 
+                 case "trokut":
+@@ -138,36 +101,45 @@
+                     double tc = scanner.nextDouble();
+                     scanner.nextLine();
+ 
+-                    Trokut trokut = new Trokut(nazivT, ta, tb, tc);
+-                    likovi.add(trokut);
++                    zadnjiTrokut = new Trokut(nazivT, ta, tb, tc);
++                    likovi.add(zadnjiTrokut);
+ 
+-                    if (likovi.size() > 1) {
+-                        System.out.println("Želiš li ispisati podatke i poredati ih po površini? (da/ne)");
+-                    } else {
+-                        System.out.println("Želiš li ispisati podatke? (da/ne)");
+-                    }
++                    isKrug = false;
++                    isPravokutnik = false;
++                    isTrokut = true;
+ 
+-                    String odgT = scanner.nextLine();
+-
+-                    if (odgT.equalsIgnoreCase("da")) {
+-                        switchCase = "podatci";
+-                    } else {
+-                        System.out.println("Želiš li unijeti novi lik? (da/ne)");
+-                        odgT = scanner.nextLine();
+-                        if (odgT.equalsIgnoreCase("da")) switchCase = "izbornik";
+-                        else {
+-                            scanner.close();
+-                            return;
+-                        }
+-                    }
++                    pitajZaIspis(scanner, likovi);
++                    switchCase = "podatci";
+                     break;
+ 
+                 case "podatci":
+-                    System.out.println("\nPodatci zadnjeg lika:");
+-                    if(isKrug){
+-                        System.out.println("Naziv: " + krug.getNaziv());
+-                        System.out.println("Radius: " + krug.getradius());
++                    System.out.println("\n--- Podatci zadnjeg lika ---");
++
++                    if (isKrug && zadnjiKrug != null) {
++                        System.out.println("Lik: KRUG");
++                        System.out.println("Naziv: " + zadnjiKrug.getNaziv());
++                        System.out.println("Radius: " + zadnjiKrug.getRadius());
++                        System.out.println("Opseg: " + zadnjiKrug.opseg());
++                        System.out.println("Površina: " + zadnjiKrug.povrsina());
++                    }
+ 
++                    if (isPravokutnik && zadnjiPravokutnik != null) {
++                        System.out.println("Lik: PRAVOKUTNIK");
++                        System.out.println("Naziv: " + zadnjiPravokutnik.getNaziv());
++                        System.out.println("a: " + zadnjiPravokutnik.getVelicinaAC());
++                        System.out.println("b: " + zadnjiPravokutnik.getVelicinaBD());
++                        System.out.println("Opseg: " + zadnjiPravokutnik.opseg());
++                        System.out.println("Površina: " + zadnjiPravokutnik.povrsina());
++                    }
++
++                    if (isTrokut && zadnjiTrokut != null) {
++                        System.out.println("Lik: TROKUT");
++                        System.out.println("Naziv: " + zadnjiTrokut.getNaziv());
++                        System.out.println("a: " + zadnjiTrokut.getPrvaStranica());
++                        System.out.println("b: " + zadnjiTrokut.getDrugaStranica());
++                        System.out.println("c: " + zadnjiTrokut.getTrecaStranica());
++                        System.out.println("Opseg: " + zadnjiTrokut.opseg());
++                        System.out.println("Površina: " + zadnjiTrokut.povrsina());
+                     }
+ 
+                     if (likovi.size() > 1) {
+@@ -192,4 +164,13 @@
+             }
+         }
+     }
++
++     private static void pitajZaIspis(Scanner scanner, ArrayList<GeoLik> likovi) {
++        if (likovi.size() > 1) {
++            System.out.println("Želiš li ispisati podatke i poredati ih po površini? (da/ne)");
++        } else {
++            System.out.println("Želiš li ispisati podatke? (da/ne)");
++        }
++        scanner.nextLine();
++    }
+ }
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"c39530f7-177b-4d50-98d9-d47ed6887e0c\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/Klase_Objekti/Main.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Main.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Main.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\"><![CDATA[{\r\n  \"lastFilter\": {\r\n    \"state\": \"OPEN\",\r\n    \"assignee\": \"BKOKAN\"\r\n  }\r\n}]]></component>\r\n  <component name=\"GithubPullRequestsUISettings\"><![CDATA[{\r\n  \"selectedUrlAndAccountId\": {\r\n    \"url\": \"https://github.com/BKOKAN/Klase_Objekti\",\r\n    \"accountId\": \"6cdb3b56-294b-4368-a50e-08bc1167f425\"\r\n  }\r\n}]]></component>\r\n  <component name=\"ProjectColorInfo\"><![CDATA[{\r\n  \"associatedIndex\": 3\r\n}]]></component>\r\n  <component name=\"ProjectId\" id=\"3ADkWF1Ov8LUtrNmdd764xBqAZh\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Application.Main.executor\": \"Run\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"RunOnceActivity.git.unshallow\": \"true\",\r\n    \"git-widget-placeholder\": \"master\",\r\n    \"kotlin-language-version-configured\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.31033.145\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"c39530f7-177b-4d50-98d9-d47ed6887e0c\" name=\"Changes\" comment=\"\" />\r\n      <created>1772134559129</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1772134559129</updated>\r\n    </task>\r\n    <servers />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 6dbec7faf0afc78f2bde5feab917b7f17b1afa33)
++++ b/.idea/workspace.xml	(date 1772469741553)
+@@ -1,9 +1,8 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="c39530f7-177b-4d50-98d9-d47ed6887e0c" name="Changes" comment="">
++    <list default="true" id="c39530f7-177b-4d50-98d9-d47ed6887e0c" name="Changes" comment="test">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/Klase_Objekti/Main.class" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -14,35 +13,35 @@
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+-  "lastFilter": {
+-    "state": "OPEN",
+-    "assignee": "BKOKAN"
++  <component name="GitHubPullRequestSearchHistory">{
++  &quot;lastFilter&quot;: {
++    &quot;state&quot;: &quot;OPEN&quot;,
++    &quot;assignee&quot;: &quot;BKOKAN&quot;
+   }
+-}]]></component>
+-  <component name="GithubPullRequestsUISettings"><![CDATA[{
+-  "selectedUrlAndAccountId": {
+-    "url": "https://github.com/BKOKAN/Klase_Objekti",
+-    "accountId": "6cdb3b56-294b-4368-a50e-08bc1167f425"
++}</component>
++  <component name="GithubPullRequestsUISettings">{
++  &quot;selectedUrlAndAccountId&quot;: {
++    &quot;url&quot;: &quot;https://github.com/BKOKAN/Klase_Objekti&quot;,
++    &quot;accountId&quot;: &quot;6cdb3b56-294b-4368-a50e-08bc1167f425&quot;
+   }
+-}]]></component>
+-  <component name="ProjectColorInfo"><![CDATA[{
+-  "associatedIndex": 3
+-}]]></component>
++}</component>
++  <component name="ProjectColorInfo">{
++  &quot;associatedIndex&quot;: 3
++}</component>
+   <component name="ProjectId" id="3ADkWF1Ov8LUtrNmdd764xBqAZh" />
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "Application.Main.executor": "Run",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "RunOnceActivity.git.unshallow": "true",
+-    "git-widget-placeholder": "master",
+-    "kotlin-language-version-configured": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
++    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="SharedIndexes">
+     <attachedChunks>
+       <set>
+@@ -58,6 +57,19 @@
+       <option name="presentableId" value="Default" />
+       <updated>1772134559129</updated>
+     </task>
++    <task id="LOCAL-00001" summary="test">
++      <option name="closed" value="true" />
++      <created>1772135933158</created>
++      <option name="number" value="00001" />
++      <option name="presentableId" value="LOCAL-00001" />
++      <option name="project" value="LOCAL" />
++      <updated>1772135933158</updated>
++    </task>
++    <option name="localTasksCounter" value="2" />
+     <servers />
+   </component>
++  <component name="VcsManagerConfiguration">
++    <MESSAGE value="test" />
++    <option name="LAST_COMMIT_MESSAGE" value="test" />
++  </component>
+ </project>
+\ No newline at end of file
