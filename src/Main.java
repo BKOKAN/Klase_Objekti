@@ -11,14 +11,13 @@ public class Main {
 
         ArrayList<GeoLik> likovi = new ArrayList<>();
 
-        Krug k1 = new Krug("K1", 6);
-        Krug k2 = new Krug("K2", 5);
-        Trokut t1 = new Trokut("T1", 5, 6, 5);
-        Trokut t2 = new Trokut("T2", 3, 6, 4);
-        Pravokutnik p1 = new Pravokutnik("P1", 5, 3);
-        Pravokutnik p2 = new Pravokutnik("P2", 4, 6);
-
-        likovi.addAll(Arrays.asList(k1, k2, t1, t2, p1, p2));
+//        Krug k1 = new Krug("K1", 6);
+//        Krug k2 = new Krug("K2", 5);
+//        Trokut t1 = new Trokut("T1", 5, 6, 5);
+//        Trokut t2 = new Trokut("T2", 3, 6, 4);
+//        Pravokutnik p1 = new Pravokutnik("P1", 5, 3);
+//        Pravokutnik p2 = new Pravokutnik("P2", 4, 6);
+//        likovi.addAll(Arrays.asList(k1, k2, t1, t2, p1, p2));
 
         Krug zadnjiKrug = null;
         Pravokutnik zadnjiPravokutnik = null;
@@ -61,8 +60,20 @@ public class Main {
                     isPravokutnik = false;
                     isTrokut = false;
 
-                    pitajZaIspis(scanner, likovi);
-                    switchCase = "podatci";
+                    String odg = pitajZaIspis(scanner, likovi);
+
+                    if (odg.equalsIgnoreCase("da")) {
+                        switchCase = "podatci";
+                    } else {
+                        System.out.println("Želiš li unijeti novi lik? (da/ne)");
+                        odg = scanner.nextLine();
+
+                        if (odg.equalsIgnoreCase("da")) switchCase = "izbornik";
+                        else {
+                            scanner.close();
+                            return;
+                        }
+                    }
                     break;
 
                 case "pravokutnik":
@@ -83,8 +94,20 @@ public class Main {
                     isPravokutnik = true;
                     isTrokut = false;
 
-                    pitajZaIspis(scanner, likovi);
-                    switchCase = "podatci";
+                    odg = pitajZaIspis(scanner, likovi);
+
+                    if (odg.equalsIgnoreCase("da")) {
+                        switchCase = "podatci";
+                    } else {
+                        System.out.println("Želiš li unijeti novi lik? (da/ne)");
+                        odg = scanner.nextLine();
+
+                        if (odg.equalsIgnoreCase("da")) switchCase = "izbornik";
+                        else {
+                            scanner.close();
+                            return;
+                        }
+                    }
                     break;
 
                 case "trokut":
@@ -108,8 +131,20 @@ public class Main {
                     isPravokutnik = false;
                     isTrokut = true;
 
-                    pitajZaIspis(scanner, likovi);
-                    switchCase = "podatci";
+                    odg = pitajZaIspis(scanner, likovi);
+
+                    if (odg.equalsIgnoreCase("da")) {
+                        switchCase = "podatci";
+                    } else {
+                        System.out.println("Želiš li unijeti novi lik? (da/ne)");
+                        odg = scanner.nextLine();
+
+                        if (odg.equalsIgnoreCase("da")) switchCase = "izbornik";
+                        else {
+                            scanner.close();
+                            return;
+                        }
+                    }
                     break;
 
                 case "podatci":
@@ -152,11 +187,10 @@ public class Main {
                     }
 
                     System.out.println("\nŽeliš li unijeti novi lik? (da/ne)");
-                    String odg = scanner.nextLine();
+                    String novi = scanner.nextLine();
 
-                    if (odg.equalsIgnoreCase("da")) {
-                        switchCase = "izbornik";
-                    } else {
+                    if (novi.equalsIgnoreCase("da")) switchCase = "izbornik";
+                    else {
                         scanner.close();
                         return;
                     }
@@ -165,12 +199,14 @@ public class Main {
         }
     }
 
-     private static void pitajZaIspis(Scanner scanner, ArrayList<GeoLik> likovi) {
+    public static String pitajZaIspis(Scanner scanner, ArrayList<GeoLik> likovi) {
+
         if (likovi.size() > 1) {
-            System.out.println("Želiš li ispisati podatke i poredati ih po površini? (da/ne)");
+            System.out.println("Želiš li ispisati podatke i poredati po površini? (da/ne)");
         } else {
             System.out.println("Želiš li ispisati podatke? (da/ne)");
         }
-        scanner.nextLine();
+
+        return scanner.nextLine();
     }
 }
